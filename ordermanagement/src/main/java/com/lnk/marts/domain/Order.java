@@ -7,30 +7,39 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Order implements Serializable {
-
 	
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
 	@Column 
 	private LocalDate orderDate;
+	
 	@Column(length=2000)
 	private String shipToAddress;
+	
 	@Column
 	private LocalDate shipToDate;
+	
 	@Column
 	private String orderStatus;
-	@Column
-	Customer customer;
+		
 	@Column
 	private Float orderAmount;
+	
 	@Column
 	private Integer recordStatus;
-	
-	
+
+	@ManyToOne()
+	Customer customer;
+
+	@OneToMany
+	private OrderItems orderItems;
 	
 
 }

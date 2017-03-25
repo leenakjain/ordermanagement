@@ -4,26 +4,37 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Customer implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
 	@Column(length=100)
 	private String	name;
+	
 	@Column(length=200)
 	private String email;
+	
 	@Column(length=15)
 	private String phone;
+	
 	@Column(length=2000)
 	private String Address;
+	
 	@Column
-	private Integer recordStatus;
+	private RecordStatus recordStatus;
+	
+	@OneToMany(fetch=FetchType.LAZY)
+	private Order order;
 	
 	
 	public Integer getId() {
@@ -56,10 +67,10 @@ public class Customer implements Serializable {
 	public void setAddress(String address) {
 		Address = address;
 	}
-	public Integer getRecordStatus() {
+	public RecordStatus getRecordStatus() {
 		return recordStatus;
 	}
-	public void setRecordStatus(Integer recordStatus) {
+	public void setRecordStatus(RecordStatus recordStatus) {
 		this.recordStatus = recordStatus;
 	}
 	
