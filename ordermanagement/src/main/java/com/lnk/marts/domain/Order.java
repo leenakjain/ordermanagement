@@ -2,6 +2,7 @@ package com.lnk.marts.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,8 +39,8 @@ public class Order implements Serializable {
 	@ManyToOne()
 	Customer customer;
 
-	@OneToMany
-	private OrderItems orderItems;
+	@OneToMany(mappedBy="order")
+	private List<OrderItems> orderItems;
 	
 
 }
